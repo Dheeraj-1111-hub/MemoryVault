@@ -119,6 +119,7 @@ function AppContent() {
   const { user, loading } = useAuth();
   
   const isAuthRoute = router.state.location.pathname === '/login' || router.state.location.pathname === '/register';
+  const isPublicRoute = isAuthRoute || router.state.location.pathname === '/';
 
   if (loading) {
     return (
@@ -130,17 +131,17 @@ function AppContent() {
     );
   }
 
-  if (!user && !isAuthRoute) {
+  if (!user && !isPublicRoute) {
     window.location.href = '/login';
     return null;
   }
 
   if (user && isAuthRoute) {
-    window.location.href = '/';
+    window.location.href = '/dashboard';
     return null;
   }
 
-  return isAuthRoute ? <Outlet /> : <Shell><Outlet /></Shell>;
+  return isPublicRoute ? <Outlet /> : <Shell><Outlet /></Shell>;
 }
 
 function RootComponent() {

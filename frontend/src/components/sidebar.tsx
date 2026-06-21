@@ -15,7 +15,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { LogOut } from "lucide-react";
 
 const nav = [
-  { to: "/", label: "Dashboard", icon: Home },
+  { to: "/dashboard", label: "Dashboard", icon: Home },
   { to: "/vault", label: "Vault", icon: FolderOpen },
   { to: "/ask", label: "Ask Memory", icon: MessageSquare },
   { to: "/timeline", label: "Timeline", icon: CalendarClock },
@@ -31,7 +31,7 @@ export function Sidebar({ onOpenCommand }: { onOpenCommand: () => void }) {
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col border-r border-border bg-sidebar text-sidebar-foreground relative">
       <div className="px-6 pt-7 pb-5 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2.5">
+        <Link to="/dashboard" className="flex items-center gap-2.5">
           <div className="h-9 w-9 rounded-md bg-ink text-paper flex items-center justify-center">
             <Sparkles className="h-4 w-4" strokeWidth={1.6} />
           </div>
@@ -62,8 +62,8 @@ export function Sidebar({ onOpenCommand }: { onOpenCommand: () => void }) {
         {nav.map((item) => {
           const Icon = item.icon;
           const active =
-            item.to === "/"
-              ? pathname === "/"
+            item.to === "/dashboard"
+              ? pathname === "/dashboard"
               : pathname === item.to || pathname.startsWith(item.to + "/");
           return (
             <Link
