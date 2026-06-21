@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
-import { fetchWithAuth } from '../lib/api';
+import { fetchWithAuth, API_URL } from '../lib/api';
 
 export const Route = createFileRoute('/login')({
   component: Login,
@@ -22,7 +22,7 @@ function Login() {
     setError('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

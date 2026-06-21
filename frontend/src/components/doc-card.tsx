@@ -70,9 +70,11 @@ export function DocCard({
   );
 }
 
+import { API_URL } from '../lib/api';
+
 export function DocPreview({ doc }: { doc: Doc }) {
-  // Use env var or just relative path if proxy is configured
-  const backendUrl = "http://localhost:5000"; 
+  // Extract base backend URL from API_URL by removing /api
+  const backendUrl = API_URL.replace(/\/api$/, ''); 
   const fileUrl = doc.filePath ? `${backendUrl}${doc.filePath}` : "";
 
   return (
