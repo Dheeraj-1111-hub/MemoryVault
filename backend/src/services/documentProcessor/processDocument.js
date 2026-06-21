@@ -31,6 +31,11 @@ exports.processDocument = async (documentId) => {
       rawText = 'Unsupported document type for extraction.';
     }
 
+    // Fallback if pdf-parse couldn't extract text (e.g. image-based PDF)
+    if (!rawText || rawText.trim().length < 10) {
+      rawText = `[Note: No readable text could be extracted from this document. It may be an image-based PDF. The original filename is: ${doc.originalName}]. Please categorize it based on the filename and mention in the summary that text extraction failed.`;
+    }
+
     // Sanitize text to remove problematic unicode bullets that confuse JSON models
     const sanitizedText = rawText.replace(/[^\x20-\x7E\n]/g, " ").substring(0, 5000);
     

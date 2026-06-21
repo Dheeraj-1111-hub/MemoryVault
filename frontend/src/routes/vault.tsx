@@ -368,7 +368,7 @@ function VaultPage() {
                 <div className="rounded-md bg-muted/60 border border-border p-3 text-xs text-muted-foreground flex items-start gap-2">
                   <FileText className="h-4 w-4 mt-0.5 shrink-0" />
                   <span>
-                    Original text excerpt: <em className="text-foreground/70">"{openDoc.excerpt}"</em>
+                    Original text excerpt: <em className="text-foreground/70">{openDoc.excerpt && openDoc.excerpt.trim() ? `"${openDoc.excerpt}"` : "[No readable text extracted]"}</em>
                   </span>
                 </div>
               </div>
