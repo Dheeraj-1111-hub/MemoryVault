@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 
+import { Spotlight } from "../components/ui/spotlight";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -33,9 +35,38 @@ function LandingPage() {
     <div className="min-h-screen bg-[#0A0A0A] text-foreground selection:bg-amber/30 selection:text-amber overflow-hidden font-sans">
       {/* Dynamic Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-gradient-to-br from-amber-500/20 to-orange-600/10 blur-[120px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-gradient-to-br from-blue-600/10 to-purple-600/20 blur-[150px]" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+        <Spotlight className="top-20 right-0 md:right-40 md:-top-40 opacity-50" fill="#f59e0b" />
+        
+        {/* 3D Perspective Grid */}
+        <div className="absolute inset-0 perspective-[1000px]">
+          <motion.div 
+            animate={{ 
+              backgroundPosition: ['0px 0px', '40px 40px'] 
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 2, 
+              ease: "linear" 
+            }}
+            className="absolute inset-0"
+            style={{
+              transform: 'rotateX(60deg) translateY(-100px) scale(2.5)',
+              transformOrigin: 'top center',
+              backgroundImage: `
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px',
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/50 to-transparent" />
+        </div>
+
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-gradient-to-br from-amber-500/10 to-orange-600/5 blur-[120px]" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-gradient-to-br from-blue-600/5 to-purple-600/10 blur-[150px]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] mix-blend-overlay"></div>
       </div>
 
       {/* Navbar */}
