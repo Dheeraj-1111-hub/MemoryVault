@@ -15,7 +15,11 @@ const app = express();
 // Security & Middleware
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); // Allow images
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:8080'], credentials: true }));
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:8080'];
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -69,15 +73,6 @@ const path = require('path');
 
 // Serve uploaded files statically
 app.use('/uploads', express.static('uploads'));
-
-// Serve frontend static files in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
-  });
-}
 
 const PORT = process.env.PORT || 5000;
 

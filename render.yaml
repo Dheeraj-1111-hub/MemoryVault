@@ -3,7 +3,7 @@ services:
     name: memoryvault-backend
     env: node
     rootDir: backend
-    buildCommand: chmod +x build.sh && ./build.sh
+    buildCommand: npm install
     startCommand: npm start
     envVars:
       - key: NODE_ENV
