@@ -159,45 +159,6 @@ function LandingPage() {
             </motion.div>
           </div>
 
-          {/* 3D Dashboard Teaser */}
-          <motion.div 
-            initial={{ opacity: 0, y: 100, rotateX: 20 }}
-            animate={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{ perspective: 1000 }}
-            className="mt-24 max-w-6xl mx-auto relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-amber-500/20 to-transparent blur-3xl -z-10 rounded-full opacity-50" />
-            <div className="rounded-2xl border border-white/10 bg-black/60 backdrop-blur-2xl shadow-2xl p-2 md:p-4 ring-1 ring-white/5 overflow-hidden">
-              <div className="rounded-xl border border-white/5 bg-[#111] overflow-hidden flex flex-col">
-                <div className="h-12 border-b border-white/5 bg-white/5 flex items-center px-4 gap-2">
-                  <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
-                  <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
-                  <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
-                  <div className="ml-4 flex-1 h-7 rounded-md bg-black/50 border border-white/5 max-w-md flex items-center px-3 text-xs text-white/40 font-mono">
-                    <Search className="h-3 w-3 mr-2" /> ask memoryvault anything...
-                  </div>
-                </div>
-                <div className="p-8 aspect-[16/9] md:aspect-[21/9] flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#111] to-black">
-                   <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-                   
-                   <motion.div 
-                     animate={{ y: [0, -10, 0] }} 
-                     transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                     className="relative z-10 text-center flex flex-col items-center"
-                   >
-                      <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-amber-400/20 to-orange-600/20 border border-amber-500/30 flex items-center justify-center mb-6 shadow-[0_0_50px_rgba(245,158,11,0.2)] backdrop-blur-xl">
-                        <BrainCircuit className="h-10 w-10 text-amber-400" />
-                      </div>
-                      <div className="font-serif text-3xl text-white">Synthesizing intelligence...</div>
-                      <div className="mt-3 flex items-center gap-2 text-white/40 text-sm font-mono bg-white/5 px-4 py-1.5 rounded-full border border-white/5">
-                        <span className="animate-pulse h-2 w-2 rounded-full bg-green-500" /> 14,021 parameters loaded
-                      </div>
-                   </motion.div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </section>
 
         {/* Bento Box Features */}
