@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { 
   Sparkles, 
   ArrowRight, 
@@ -13,7 +13,6 @@ import {
   Layers
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
-import { useRef } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,14 +26,6 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   const { user, loading } = useAuth();
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   if (loading) return null;
 
@@ -84,10 +75,10 @@ function LandingPage() {
         </div>
       </nav>
 
-      <main className="relative z-10" ref={targetRef}>
+      <main className="relative z-10">
         {/* Hero Section */}
         <section className="pt-40 pb-32 px-6 relative">
-          <motion.div style={{ y, opacity }} className="max-w-5xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto text-center">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -135,7 +126,7 @@ function LandingPage() {
                 Start building your vault <ArrowRight className="h-5 w-5" />
               </Link>
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* 3D Dashboard Teaser */}
           <motion.div 
