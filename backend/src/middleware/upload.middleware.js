@@ -1,14 +1,26 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+
+// Ensure upload directories exist
+const pdfDir = 'uploads/pdfs/';
+const imgDir = 'uploads/images/';
+
+if (!fs.existsSync(pdfDir)) {
+  fs.mkdirSync(pdfDir, { recursive: true });
+}
+if (!fs.existsSync(imgDir)) {
+  fs.mkdirSync(imgDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Store pdfs in uploads/pdfs and images in uploads/images
     if (file.mimetype === 'application/pdf') {
-      cb(null, 'uploads/pdfs/');
+      cb(null, pdfDir);
     } else {
-      cb(null, 'uploads/images/');
+      cb(null, imgDir);
     }
   },
   filename: (req, file, cb) => {
